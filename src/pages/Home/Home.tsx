@@ -1,5 +1,4 @@
-import React from 'react'
-import Slider from '../../components/Slider/Slider'
+ import Slider from '../../components/Slider/Slider'
 import FeaturedProduct from '../../components/FeaturedProduct/FeaturedProduct'
 import Contact from '../../components/Contact/Contact'
 

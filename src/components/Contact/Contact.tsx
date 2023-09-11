@@ -23,15 +23,14 @@
 // }
 
 // export default Contact
-import React from 'react';
-import { AiFillInstagram } from 'react-icons/ai';
+ import { AiFillInstagram } from 'react-icons/ai';
 import { FaXTwitter } from 'react-icons/fa6';
 import { AiFillYoutube } from 'react-icons/ai';
 import { AiFillFacebook } from 'react-icons/ai';
 
 const Contact = () => {
   return (
-    <div className="bg-blue-600 h-auto py-4 px-4 flex items-center justify-around text-white">
+    <div className="bg-blue-600 h-auto py-1 px-4 flex items-center justify-around text-white">
       <div className="flex flex-col">
         <span className="text-xl font-semibold mb-2">Be in Touch</span>
       </div>

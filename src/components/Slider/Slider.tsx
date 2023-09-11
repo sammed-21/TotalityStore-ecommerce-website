@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 const Slider = () => {

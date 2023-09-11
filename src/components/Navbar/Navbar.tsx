@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import { useRecoilValue } from "recoil";
+import { getNumberOfCart } from "../../state/selectors/selectors";
 
 const Navbar: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdownMenu, setIsDropdownMenu] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false);
+const currentCartLength = useRecoilValue(getNumberOfCart)
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
   };
@@ -14,6 +18,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
+    <>
     <nav className="bg-gray-200 shadow-2xl  backdrop-filter backdrop-blur-lg sticky top-0 z-10 bg-opacity-30 border-b   max-sm:flex-col border-gray-200 text-black ">
       <div className="min-w-screen-xl flex flex-wrap  items-center justify-between mx-auto p-4 border-b-2 border-gray-500 px-9">
         <div className="flex gap-9 ">
@@ -129,10 +134,10 @@ const Navbar: React.FC = () => {
                 </li>
               </ul>
             </div>
-            <div className="relative">
+            <div className="relative" onClick={()=>setIsOpen(prev => !prev)}>
               <AiOutlineShoppingCart size={30} />
               <span className="absolute -right-2 -top-3 items-center flex justify-center  text-md h-6 w-6 rounded-full bg-blue-700 text-white">
-                0
+              {currentCartLength}
               </span>
             </div>
             <button
@@ -197,8 +202,13 @@ const Navbar: React.FC = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+      </div>
     </nav>
+      {isOpen && <div className=" overflow-y-auto ">
+        <ShoppingCart />
+        </div>
+        }
+  </>
   );
 };
 

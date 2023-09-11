@@ -1,8 +1,8 @@
-import React from "react";
+ 
 
 const Footer = () => {
   return (
-    <div className=" w-full mt-[40%]  border-t-2 bg-gray-100 border-gray-200">
+    <div className=" w-full     border-t-2 bg-gray-100 border-black mt-4">
       <div className=" p-24 ">
         <div className=" flex flex-col md:flex-row gap-10 w-full">
           <div className="flex-1">
