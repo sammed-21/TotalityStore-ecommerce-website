@@ -261,7 +261,7 @@ const CheckOut: React.FC = () => {
               </p>
             </div>
           </div>
-          <Link to={"/products"}>
+          <Link to={"/products/1"}>
             <button
               onClick={notify}
               className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
