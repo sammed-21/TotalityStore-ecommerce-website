@@ -8,30 +8,7 @@ const Products = () => {
   const catId = Number(useParams().id);
 
   const [isDropdownMenu, setIsDropdownMenu] = useState(false);
-  // const [maxPrice, setMaxPrice] = useState(1000);
-  // const [sort, setSort] = useState("");
-  // const handleMaxPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setMaxPrice(Number(e.target.value)); // Update the maxPrice state with the selected value
-  // };
-  // const handleSort = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSort(e.target.value);
-  //   // console.log(e.target.value);
-  // };
-  // const handleFilterMenu = () => {
-  //   setIsDropdownMenu((prev) => !prev);
-  //   // console.log(isDropdownMenu);
-  // };
-
-
-
-
-
-
-
-
-  // const catId = Number(useParams().id);
-
-  // State variables for filter criteria
+ 
   
   const [maxPrice, setMaxPrice] = useState<number | null>(null);
   const [sort, setSort] = useState<string | null>(null);

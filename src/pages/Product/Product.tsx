@@ -1,10 +1,10 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { ProductInterface } from "../../utils/types";
 import { AiFillDelete, AiOutlineShoppingCart } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { productListState, shoppingCartState } from "../../state/atoms/atoms";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 const ProductCard: React.FC = () => {
   const { title } = useParams<{ title: string }>(); // Get the title from the URL
@@ -26,10 +26,8 @@ const ProductCard: React.FC = () => {
   };
   const handleDeleteItem = (title: string) => {
     // Remove the item with the specified title from the shopping cart
-    setCart((prevCart) =>
-    prevCart.filter((item) => item.title !== title)
-    );
-    toast.error("Removed from Cart",{duration:1000})
+    setCart((prevCart) => prevCart.filter((item) => item.title !== title));
+    toast.error("Removed from Cart", { duration: 1000 });
 
     // setAddCartButton(false)
   };
@@ -46,14 +44,14 @@ const ProductCard: React.FC = () => {
             : item
         )
       );
-      toast.error('item already in cart', { duration:1000})
+      toast.error("item already in cart", { duration: 1000 });
     } else {
       // If the item does not exist in the cart, add it with quantity 1
       const newcart = productList.find((product) => product.title === title);
 
       if (newcart) {
         setCart((prev) => (newcart ? [...prev, newcart] : prev));
-        toast.success("Add to Cart",{duration:1000})
+        toast.success("Add to Cart", { duration: 1000 });
       }
     }
   };
@@ -109,14 +107,21 @@ const ProductCard: React.FC = () => {
               </button>
             </div>
 
-            {
-      isItemInCart ?<button  onClick={()=>handleDeleteItem(selectedItem.title)} className={`  w-64 py-2 bg-red-600 text-white flex items-center   cursor-pointer justify-center`}>
-              <AiFillDelete /> Remove from Cart
-            </button>:
-        <button   onClick={()=>addToCart(selectedItem.title)} className={`  w-64 py-2 bg-blue-600 text-white flex items-center gap-10 cursor-pointer justify-center`}>
-          <AiOutlineShoppingCart /> Add To Cart
-        </button>
-        }
+            {isItemInCart ? (
+              <button
+                onClick={() => handleDeleteItem(selectedItem.title)}
+                className={`  w-64 py-2 bg-red-600 text-white flex items-center   cursor-pointer justify-center`}
+              >
+                <AiFillDelete /> Remove from Cart
+              </button>
+            ) : (
+              <button
+                onClick={() => addToCart(selectedItem.title)}
+                className={`  w-64 py-2 bg-blue-600 text-white flex items-center gap-10 cursor-pointer justify-center`}
+              >
+                <AiOutlineShoppingCart /> Add To Cart
+              </button>
+                )}
 
             <div className="flex flex-col gap-3 text-gray-400 mt-8">
               <span>Vendor: Sam</span>
@@ -125,6 +130,7 @@ const ProductCard: React.FC = () => {
               <hr />
               <div>
                 <span>DESCRIPTION</span>
+                <p>{selectedItem.description}</p>
                 <hr />
                 <span>ADDITIONAL INFORMATION</span>
                 <hr />
@@ -134,7 +140,7 @@ const ProductCard: React.FC = () => {
           </div>
         </>
       )}
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };

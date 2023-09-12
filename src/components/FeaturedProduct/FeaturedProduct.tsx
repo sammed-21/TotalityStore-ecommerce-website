@@ -24,7 +24,7 @@ const FeaturedProduct: React.FC<ProductName> = ({ featuredName }) => {
           asperiores numquam debitis officia facere a tenetur! Quia, placeat ut.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+      <div className="grid items-center justify-center  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-20">
         {filteredProducts.map((product) => (
           <Card
             key={product.id} // Use product.id as the key

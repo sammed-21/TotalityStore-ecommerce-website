@@ -28,12 +28,12 @@ const Slider = () => {
 
   return (
     <div className="relative h-full md:h-[85vh] overflow-hidden w-full">
-      <div className="flex w-full h-auto" style={slideStyle}>
+      <div className="flex object-contain w-full h-auto" style={slideStyle}>
         {data.map((image, index) => (
           <img
             key={index}
             src={image}
-            className="min-w-full h-full object-cover"
+            className="min-w-full h-full object-contain"
             // className="w-full h-full object-center  object-cover"
             alt={`Slide ${index + 1}`}
           />

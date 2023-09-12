@@ -67,14 +67,14 @@ const Navbar: React.FC = () => {
         <div className="min-w-screen-xl flex flex-wrap  items-center justify-between mx-auto p-4 max-sm:py-3 max-sm:p-2  border-gray-500 px-9">
           <div className="flex gap-9 ">
             <a href="https://flowbite.com/" className="flex items-center">
-              <span className="self-center text-2xl font-semibold whitespace-nowrap">
+              <span className="self-center text-2xl max-sm:text-md font-semibold whitespace-nowrap">
                 <Link to="/">TotalityStore</Link>
               </span>
             </a>
             <div
-              className={`items-center    justify-between ${
+              className={`items-center justify-between ${
                 isDropdownMenu
-                  ? "flex max-md:absolute max-md:top-[4.5rem] max-md:shadow-lg max-md:left-0 max-md:w-full max-md:items-center bg-white "
+                  ? "flex max-md:absolute max-md:top-[4.2rem] max-md:shadow-lg max-md:left-0 max-md:w-full max-md:items-center bg-white "
                   : "hidden "
               }   w-full md:flex md:w-auto`}
               id="navbar-user"

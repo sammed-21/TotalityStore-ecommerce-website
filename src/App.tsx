@@ -6,19 +6,15 @@ import {
    Outlet,
  } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
-// import { ctx } from "./context";
-// import { StateInterface } from "./utils/types";
-import Navbar from "./components/Navbar/Navbar";
-// import { reducerFn,initialState } from "./reducer";
-import Home from "./pages/Home/Home";
+ import Navbar from "./components/Navbar/Navbar";
+ import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
 import Product from "./pages/Product/Product";
 import {  useEffect } from 'react';
 import { useRecoilState } from "recoil";
 import { productListState } from "./state/atoms/atoms";
 import CheckOut from "./pages/CheckOut/CheckOut";
-// import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
-  
+   
  
 
 const Layout = () => {
@@ -68,7 +64,7 @@ function App() {
     try {
       fetch('https://fakestoreapi.com/products')
         .then(res => res.json())
-        .then(data => setProducts(data)); // Update productListState with fetched data
+        .then(data => setProducts(data)); 
     } catch (err) {
       console.log(err);
     }

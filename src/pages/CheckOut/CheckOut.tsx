@@ -1,16 +1,17 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import { shoppingCartState } from "../../state/atoms/atoms";
-import { ShoppingInterface } from '../../utils/types';
-import toast, { Toaster } from 'react-hot-toast';
+import { ShoppingInterface } from "../../utils/types";
+import toast, { Toaster } from "react-hot-toast";
 
 import React from "react";
 import { getTotalCartPrice } from "../../state/selectors/selectors";
 import { Link } from "react-router-dom";
 
 const CheckOut: React.FC = () => {
- 
-  const [shoppingCart, setShoppingCart] = useRecoilState<ShoppingInterface[]>(shoppingCartState);
-  
+  const [shoppingCart, setShoppingCart] = useRecoilState<ShoppingInterface[]>(
+    shoppingCartState
+  );
+
   const totalPrice = useRecoilValue(getTotalCartPrice);
 
   const handleQuantityChange = (title: string, newQuantity: number) => {
@@ -22,7 +23,7 @@ const CheckOut: React.FC = () => {
       )
     );
   };
-  const notify = () => toast.success('Your Order Has Been Placed');
+  const notify = () => toast.success("Your Order Has Been Placed");
   return (
     <div>
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
@@ -40,7 +41,7 @@ const CheckOut: React.FC = () => {
                     className="flex flex-col rounded-lg bg-white sm:flex-row"
                   >
                     <img
-                      className="m-2 h-24 w-28 rounded-md border object-cover object-center"
+                      className="m-2 h-24 w-28 rounded-md border object-contain object-center"
                       src={item.image}
                       alt=""
                     />
@@ -53,30 +54,36 @@ const CheckOut: React.FC = () => {
                       </span>
                       <p className="text-lg font-bold">${item.price}</p>
                       <div className="flex gap-10 ">
-
                         <p>Quantity: {item.quantity || 1}</p>
-                        <button
-                type="button"
-                className="px-4 py-2 bg-slate-400 "
-                onClick={() =>
-                  handleQuantityChange(
-                    item?.title,
-                    (item?.quantity ||1) < 2 ? 1 : ((item.quantity ||1) - 1)
-                  )
-                }
-              >
-                -
-              </button>
-              <span>{item.quantity || 1}</span>
-              <button
-                className="px-4 py-2 bg-slate-400 "
-                onClick={() =>
-                  handleQuantityChange(item?.title, ((item?.quantity ||1) + 1))
-                }
-              >
-                +
-              </button>
-                       </div>
+                        <div className="flex gap-4 items-center">
+                          <button
+                            type="button"
+                            className="px-4 py-2 bg-slate-400 "
+                            onClick={() =>
+                              handleQuantityChange(
+                                item?.title,
+                                (item?.quantity || 1) < 2
+                                  ? 1
+                                  : (item.quantity || 1) - 1
+                              )
+                            }
+                          >
+                            -
+                          </button>
+                          <span>{item.quantity || 1}</span>
+                          <button
+                            className="px-4 py-2 bg-slate-400 "
+                            onClick={() =>
+                              handleQuantityChange(
+                                item?.title,
+                                (item?.quantity || 1) + 1
+                              )
+                            }
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
                       <p>
                         TotalPrice :{item.quantity || 1} x {item.price}= $
                         {item.price * (item.quantity || 1)}
@@ -86,34 +93,7 @@ const CheckOut: React.FC = () => {
                 ))}
               </>
             )}
-            {/* <div className="flex flex-col rounded-lg bg-white sm:flex-row">
-              <img
-                className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                src="https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                alt=""
-              />
-              <div className="flex w-full flex-col px-4 py-4">
-                <span className="font-semibold">
-                  Nike Air Max Pro 8888 - Super Light
-                </span>
-                <span className="float-right text-gray-400">42EU - 8.5US</span>
-                <p className="text-lg font-bold">$138.99</p>
-              </div>
-            </div>
-            <div className="flex flex-col rounded-lg bg-white sm:flex-row">
-              <img
-                className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                alt=""
-              />
-              <div className="flex w-full flex-col px-4 py-4">
-                <span className="font-semibold">
-                  Nike Air Max Pro 8888 - Super Light
-                </span>
-                <span className="float-right text-gray-400">42EU - 8.5US</span>
-                <p className="mt-auto text-lg font-bold">$238.99</p>
-              </div>
-            </div> */}
+          
           </div>
         </div>
         <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
@@ -267,7 +247,7 @@ const CheckOut: React.FC = () => {
             <div className="mt-6 border-t border-b py-2">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-medium text-gray-900">Subtotal</p>
-                <p className="font-semibold text-gray-900">${totalPrice-8}</p>
+                <p className="font-semibold text-gray-900">${totalPrice - 8}</p>
               </div>
               <div className="flex items-center justify-between">
                 <p className="text-sm font-medium text-gray-900">Shipping</p>
@@ -276,16 +256,21 @@ const CheckOut: React.FC = () => {
             </div>
             <div className="mt-6 flex items-center justify-between">
               <p className="text-sm font-medium text-gray-900">Total</p>
-              <p className="text-2xl font-semibold text-gray-900">${totalPrice}</p>
+              <p className="text-2xl font-semibold text-gray-900">
+                ${totalPrice}
+              </p>
             </div>
           </div>
           <Link to={"/products"}>
-          <button onClick={notify}  className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
-            Place Order
-          </button>
+            <button
+              onClick={notify}
+              className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
+            >
+              Place Order
+            </button>
           </Link>
         </div>
-        <Toaster/>
+        <Toaster />
       </div>
     </div>
   );

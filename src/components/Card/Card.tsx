@@ -9,26 +9,17 @@ import { AiFillDelete, AiOutlineShoppingCart } from "react-icons/ai";
 import toast, { Toaster } from 'react-hot-toast';
 
 const Card: React.FC<ProductInterface> = ({  image, title, oldPrice, price }) => {
-  // const handleClick = () => {
-  //   dispatch({type:"ADD_TO_CART",payload:product})
-  // }  
+     
   const productState = useRecoilValue(productListState);
   
-  // const productState: ProductInterface[] = []; // Your product data here
-  
+ 
   const [cart, setCart] = useRecoilState(shoppingCartState)
-  // const addToCart = (title:string) => {
-   
-  //  let newcart =  productState.find(product => product.title === title)
-  //  setCart((prev) => (newcart ? [...prev, newcart] : prev))
-  //   // setAddCartButton(true);
-  //   // setCart((prevCart: any) => [...prevCart, item]);
-  // };
+ 
 
  
   const addToCart = (title: string) => {
     const existingCartItem = cart.find((item) => item.title === title);
-    toast.success('addcart',{duration: 1000,})
+    toast.success('add cart',{duration: 1000,})
     if (existingCartItem) {
       // If the item already exists in the cart, update its quantity
       setCart((prevCart) =>
@@ -54,20 +45,19 @@ const Card: React.FC<ProductInterface> = ({  image, title, oldPrice, price }) =>
         setCart((prevCart) =>
         prevCart.filter((item) => item.title !== title)
         );
-        // setAddCartButton(false)
-      };
+       };
       const isItemInCart = cart.some((item) => item.title === title);
    
 
   return (
     <div className="w-64 relative h-[400px] flex justify-between flex-col   bg-white shadow-lg overflow-hidden">
     <Link to={`/product/${title.trim()}`}>
-      <div> {/* Set fixed dimensions for the card */}
-        <div className="h-52 object-cover overflow-hidden">  
+      <div>  
+        <div className="h-52 object-contain overflow-hidden">  
           <img
             src={image}
             alt="Product"
-            className="object-cover w-full h-full"
+            className=" object-contain w-full h-full"
             />
         </div>
         <div className="p-4">

@@ -38,7 +38,8 @@ const ShoppingCart: React.FC<SlideOverProps> = ({ isOpen, onClose, userProfile }
   };
  
   
-  const handleMultipleActions =  () => {
+  const handleMultipleActions = () => {
+    onClose()
     console.log('clicked')
     if (userProfile) {
       console.log(userProfile)
@@ -117,6 +118,7 @@ const ShoppingCart: React.FC<SlideOverProps> = ({ isOpen, onClose, userProfile }
                                     src={item.image}
                                     className="w-20 h-24 object-cover"
                                     alt=""
+                                    onClick={onClose}
                                   />
                                   <div className="justify-start flex flex-col">
                                     <h1>
