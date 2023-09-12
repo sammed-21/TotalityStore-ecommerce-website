@@ -1,8 +1,7 @@
 import { selector } from "recoil";
 
 import { productListState, shoppingCartState } from "../atoms/atoms";
-import { ProductInterface } from "../../utils/types";
-
+ 
 export const getAllProducts = selector({
     key: "productListStateAll",
     get: ({ get }) => {

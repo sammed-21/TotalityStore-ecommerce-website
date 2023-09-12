@@ -73,7 +73,7 @@ const Products = () => {
       {/* left side bar */}
       <button
         onClick={handleFilterMenu}
-        className="sm:hidden absolute mt-6 top-[7rem] flex items-center bg-slate-400 rounded-2xl px-3 py-2"
+        className="sm:hidden absolute mt-6 top-[4rem] flex items-center bg-slate-400 rounded-2xl px-3 py-2"
       >
         Filter <FaAngleDown />
       </button>

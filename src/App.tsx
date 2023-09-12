@@ -16,6 +16,7 @@ import Product from "./pages/Product/Product";
 import {  useEffect } from 'react';
 import { useRecoilState } from "recoil";
 import { productListState } from "./state/atoms/atoms";
+import CheckOut from "./pages/CheckOut/CheckOut";
 // import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
   
  
@@ -50,13 +51,18 @@ const router = createBrowserRouter([
         path: "/product/:title",
         element: <Product  />,
       },
+      {
+        path: "/checkout",
+        element:<CheckOut/>
+        
+      }
      
     ],
   },
 ]);
 
 function App() {
-  const [products, setProducts] = useRecoilState(productListState);
+  const [, setProducts] = useRecoilState(productListState);
 
   useEffect(() => {
     try {

@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { ProductInterface } from "../../utils/types";
 import { AiFillDelete, AiOutlineShoppingCart } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { productListState, shoppingCartState } from "../../state/atoms/atoms";
-
+import toast, { Toaster } from 'react-hot-toast';
 
 const ProductCard: React.FC = () => {
   const { title } = useParams<{ title: string }>(); // Get the title from the URL
-   const productList = useRecoilValue<ProductInterface[]>(productListState);
- 
+  const productList = useRecoilValue<ProductInterface[]>(productListState);
+
   const selectedItem = productList.find((item) => item.title.trim() === title);
 
   const [quntity, setQunitiy] = useState(1);
   const [cart, setCart] = useRecoilState(shoppingCartState);
-  
-  const [disableAddCart, setDisableAddCart] = useState(false)
-  if (cart.length > 0 && cart.find(i => i.title === title)){
-    setDisableAddCart(prev =>!prev);
-    console.log(disableAddCart)
-  }
+
   const handleQuantityChange = (title: string, newQuantity: number) => {
     let newQuantitys = newQuantity < 0 ? 1 : newQuantity;
     setQunitiy(newQuantity);
@@ -29,10 +24,19 @@ const ProductCard: React.FC = () => {
       )
     );
   };
+  const handleDeleteItem = (title: string) => {
+    // Remove the item with the specified title from the shopping cart
+    setCart((prevCart) =>
+    prevCart.filter((item) => item.title !== title)
+    );
+    toast.error("Removed from Cart",{duration:1000})
+
+    // setAddCartButton(false)
+  };
 
   const addToCart = (title: string) => {
     const existingCartItem = cart.find((item) => item.title === title);
-  
+
     if (existingCartItem) {
       // If the item already exists in the cart, update its quantity
       setCart((prevCart) =>
@@ -42,21 +46,19 @@ const ProductCard: React.FC = () => {
             : item
         )
       );
+      toast.error('item already in cart', { duration:1000})
     } else {
       // If the item does not exist in the cart, add it with quantity 1
-      const newcart = productList.find(
-        (product) => product.title === title
-      );
-  
+      const newcart = productList.find((product) => product.title === title);
+
       if (newcart) {
-        setCart((prev) => (newcart ? [...prev, newcart] : prev))      }
+        setCart((prev) => (newcart ? [...prev, newcart] : prev));
+        toast.success("Add to Cart",{duration:1000})
+      }
     }
   };
-  useEffect(() => {
-    
-  })
+  const isItemInCart = cart.some((item) => item.title === selectedItem?.title);
 
- 
   return (
     <div className="w-full flex p-5 max-md:flex-col gap-12">
       {/* left */}
@@ -106,12 +108,16 @@ const ProductCard: React.FC = () => {
                 +
               </button>
             </div>
-          
-        <button  disabled={disableAddCart}  onClick={()=>addToCart(selectedItem.title)} className={`  w-64 py-2   bg-blue-500 text-white flex items-center gap-10 cursor-pointer justify-center`}>
+
+            {
+      isItemInCart ?<button  onClick={()=>handleDeleteItem(selectedItem.title)} className={`  w-64 py-2 bg-red-600 text-white flex items-center   cursor-pointer justify-center`}>
+              <AiFillDelete /> Remove from Cart
+            </button>:
+        <button   onClick={()=>addToCart(selectedItem.title)} className={`  w-64 py-2 bg-blue-600 text-white flex items-center gap-10 cursor-pointer justify-center`}>
           <AiOutlineShoppingCart /> Add To Cart
         </button>
-        
-                 
+        }
+
             <div className="flex flex-col gap-3 text-gray-400 mt-8">
               <span>Vendor: Sam</span>
               <span>Product Type : T-shirt</span>
@@ -128,6 +134,7 @@ const ProductCard: React.FC = () => {
           </div>
         </>
       )}
+      <Toaster/>
     </div>
   );
 };

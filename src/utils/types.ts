@@ -19,7 +19,12 @@
    description?: string;
 }
  
-
+export interface UserProfile {
+   name?: string;
+   email?: string;
+   picture?: string;
+   // Add other properties as needed
+ }
  
 // export const shoppingcart = [
 //     {

@@ -45,7 +45,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex mt-10 items-center gap-10">
-          <span className="text-2xl font-bold">Totality</span>
+          <span className="text-2xl font-bold">TotalityStore</span>
           <span className="text-md font-semibold text-gray-600 justify-center">Copyright &copy; 2023</span>
         </div>
       </div>
