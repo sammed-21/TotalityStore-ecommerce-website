@@ -1,6 +1,4 @@
-## Implementation Details
-
-This e-commerce website project successfully implements all the tasks outlined in the challenge instructions:
+ 
 ## Tech Stack
 
 This e-commerce website project was built using the following technologies and libraries:
